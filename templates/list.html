@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <style>
+    pre {
+  overflow: auto;
+  background-color: #ffffff;
+  padding: 1%;
+}
+    </style>
+  </head>
+  <body>
+    {% include 'navbar.html'%}
+    <div class="container">
+      <h3>List of Entries</h3>
+      {% for entry in entries %}
+      {{y}}
+        <ul class="collapsible">
+          <li>
+            <div class="collapsible-header">{{ entry.name }}</div>
+            <div class="collapsible-body">
+              <p><b>Description:</b><br>{{ entry.description }}</p>
+ <pre><b>Code:</b><br><code id="{{entry.name.split(' ')[0]}}">{{ entry.code }}</code></pre>
+   <p> Author:{{entry.author}}</p>
+ <button class="btn blue" data-clipboard-target="#{{entry.name.split(' ')[0]}}" >Copy</button><hr>
+              {% if "username" in session %}
+                {% if session["username"] == entry.author %}
+                <form action="/delete/{{ entry.name }}" method="post">
+                  <button class="btn red" type="submit">Delete</button>
+                </form>
+                {% endif %}
+              {% endif %}
+            </div>
+          </li>
+        </ul>
+      {% endfor %}
+    </div>
+   <script src="{{url_for('static',filename='cbd.js')}}"></script>
+    <script>
+      $(document).ready(function(){
+    $('.collapsible').collapsible();
+ var clipboard=  new Clipboard('.blue');
+ clipboard.on('success', function(e) {
+       swal({
+  title: "Copied!",
+  text: "Code copied succesfully",
+  icon: "success",
+});
+
+    e.clearSelection();
+});
+
+clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
+     swal({
+  title: "Cannot copy!",
+  text: "Code copy Failed",
+  icon: "error",
+});
+});
+
+  });
+
+    </script>
+  </body>
+</html>

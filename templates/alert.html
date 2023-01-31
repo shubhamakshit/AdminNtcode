@@ -1,0 +1,16 @@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    swal({
+  title: "{{title}}",
+  text: "{{text}}!",
+  icon: "{{icon}}",
+}).then(function() {
+    window.location = "/{{red}}";
+})
+;
+});
+
+</script>
