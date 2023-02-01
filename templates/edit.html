@@ -1,0 +1,41 @@
+<html>
+  <style>
+  
+
+    @media only screen and (min-width: 768px) {
+    .two
+    {
+      display: flex; width: 100%;
+    }
+    .two>textarea
+    {
+      width: 50%; padding: 10px;
+    }
+}
+  </style>
+<body>
+{% include 'navbar.html' %}
+    <h5>Code-Name:{{name}}</h5>
+    <hr>
+    
+  <div class="container">
+    <form action="/form/{{name}}" method="post">
+<br><br><br>
+      <div  class="two">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" class="materialize-textarea" required  >{{des}}</textarea>
+        
+        <label for="code">Code</label>
+        <textarea id="code" name="code" class="materialize-textarea" required >{{code}}</textarea>
+        
+      </div>
+        
+
+
+      <button class="btn waves-effect waves-light" type="submit">Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+    </div>
+</body>
+</html>

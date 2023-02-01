@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Form</title>
+  <title>Upload Java Codes</title>
   <!-- Materialize CSS CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,17 +12,17 @@
   <div class="container">
     <form action="/form" method="POST">
       <div class="input-field">
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" required autocomplete="off">
         <label for="name">Name</label>
       </div>
 
       <div class="input-field">
-        <textarea id="description" name="description" class="materialize-textarea" required></textarea>
+        <textarea id="description" name="description" class="materialize-textarea" required > </textarea>
         <label for="description">Description</label>
       </div>
 
       <div class="input-field">
-        <textarea id="code" name="code" class="materialize-textarea" required></textarea>
+        <textarea id="code" name="code" class="materialize-textarea" required> </textarea>
         <label for="code">Code</label>
       </div>
 
