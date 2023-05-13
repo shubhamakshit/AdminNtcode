@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<head>
+  <title>{{username}} - Profile</title>
+</head>
+
+<body>
+
+  {% include 'navbar.html' %}
+
+  <div class="container profile-container ">
+
+    <div class="card-panel">
+
+      <h4>Profile</h4>
+
+      <div id="display">
+
+        <p>Username: <span id="username">{{username}}</span></p>
+
+        <p>Name: <span id="name">{{name}}</span></p>
+
+        <p>Bio: <span id="bio">{{bio}}</span></p>
+
+      </div>
+
+      <div id="edit" style="display: none">
+
+        <form action="/profile" method="post">
+
+          <div class="input-field">
+
+            <input type="text" id="name-edit" name="name" value="{{name}}">
+
+            <label for="name-edit">Name</label>
+
+          </div>
+
+          <div class="input-field">
+
+            <textarea id="bio-edit" class="materialize-textarea" name="bio">{{bio}}</textarea>
+
+            <label for="bio-edit">Bio</label>
+
+          </div>
+
+
+          <button class="btn waves-effect waves-light" type="submit">Save</button>
+
+        </form>
+
+      </div>
+
+      <button class="btn-floating btn-large waves-effect waves-light red" id="edit-button" style="float: right"
+        onclick=""><i class="material-icons">edit</i></button>
+
+    </div>
+    <a class="waves-effect waves-light btn red" onclick="window.location='/change/password/'"><i
+        class="material-icons right">lock</i>Change Password</a>
+    <a class="waves-effect waves-light btn red" onclick="logout()"><i class="material-icons right">logout</i>Logout</a>
+
+  </div>
+
+  {% include 'js/profile.js.html' %}
+  {% include 'css/profile.css.html' %}
+</body>
+
+
+</html>

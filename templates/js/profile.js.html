@@ -1,0 +1,47 @@
+<script>
+
+    // Edit Button Click Event
+  $("#edit-button").click(function() {
+    // Toggle the display and edit sections
+    $("#display").toggle();
+    $("#edit").toggle();
+  
+    if ($('#edit-button > .material-icons').html() === 'edit') {
+      // If the button icon is "edit", change it to "save" and set the onclick event to submit the form data
+      $('#edit-button > .material-icons').html('save');
+      $('#edit-button').attr('onclick', "$.post('/profile', $('form').serialize());");
+    } else {
+      // If the button icon is "save", change it back to "edit" and clear the onclick event
+      $('#edit-button > .material-icons').html('edit');
+      $('#edit-button').attr('onclick', '');
+      // Reload the profile page to discard any unsaved changes
+      window.location = '/profile/';
+    }
+  });
+  
+  // Logout Function
+  function logout() {
+    // Display a confirmation dialog using SweetAlert library
+    swal({
+      title: "Are you sure?",
+      text: "You will be logged out of your account",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        // If confirmed, call the finalLogOut function
+        finalLogOut();
+      } else {
+        swal("Cancelled! logout");
+      }
+    });
+  }
+  
+  // Final Logout Function
+  function finalLogOut() {
+    // Redirect to the logout page
+    location.href = '/logout';
+  }
+  
+    </script>

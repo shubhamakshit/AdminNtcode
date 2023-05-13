@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <title>Upload Java Codes</title>
+
+  <!-- Materialize CSS CDN -->
+
+</head>
+
+<body>
+
+  {% include 'navbar.html'%}
+  <style type="text/css">
+    /* label focus color */
+    .input-field input:focus+label {
+      color: white !important;
+    }
+
+    .input-field input[type=text]:focus {
+      border-bottom: 1px solid white !important;
+      box-shadow: 0 1px 0 0 white !important;
+    }
+
+    .input-field input[type=text]:focus {
+      border-bottom: 1px solid white !important;
+      box-shadow: 0 1px 0 0 white !important;
+    }
+
+    .input-field input[type=text] {
+      color: white;
+    }
+  </style>
+
+  <div class="container form-container">
+
+    <form action="/form/{% block form_act %}{% endblock %}" method="POST">
+{% block name %}{% endblock %}
+
+      <div class="input-field">
+
+        <input type="text" id="single" name="single" required autocomplete="off"
+          value="{% block sdes_val %}{% endblock %}">
+
+        <label for="single" class="">Single Line description</label>
+
+      </div>
+
+      <p class="center-align"><b>Enter The Description</b></p>
+      <div id="editor-md">
+
+
+        <link rel="stylesheet" href="/static/editormd/css/editormd.css" />
+        <div>
+          <div id="test-editor" style="height:50%;">
+            <textarea style="display:none;" name="">### Editor.md
+  **Editor.md**: The open source embeddable online markdown editor, based on CodeMirror & jQuery & Marked.
+      </textarea>
+          </div>
+        </div>
+        <script src="/static/editormd/editormd.min.js"></script>
+        <script type="text/javascript">
+          {% include 'en.js.html' %}
+          $(function () {
+            var editor = editormd("editor-md", {
+              width: "",
+              height: "",
+              name: "description",
+              placeholder: "A good Documentation",
+              path: "/static/editormd/lib/",
+              value: convertSanitizedStringToHtml(`{% block des_val %}{% endblock %}`)
+
+            });
+
+          });
+          function convertSanitizedStringToHtml(sanitizedString) {
+            const tempElement = document.createElement("div");
+            tempElement.innerHTML = sanitizedString;
+            return tempElement.innerHTML;
+          }
+        </script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/help-dialog/help-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/code-block-dialog/code-block-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/emoji-dialog/emoji-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/goto-line-dialog/goto-line-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/html-entities-dialog/html-entities-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/image-dialog/image-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/link-dialog/link-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/preformatted-text-dialog/preformatted-text-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/reference-link-dialog/reference-link-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/table-dialog/table-dialog.js"></script>
+
+
+
+      </div>
+
+      <p class="center-align"><b>Enter The Code</b></p>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-beautify.js"></script>
+      <div id="code-edit">{% block code %}{% endblock %}</div>
+
+      <script>
+        var editor = ace.edit("code-edit");
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/java");
+        editor.setOptions({
+          enableBasicAutocompletion: true,
+          enableSnippets: true,
+          enableLiveAutocompletion: true,
+          fontSize: "14pt"
+        });
+        editor.getSession().on('change', function () {
+          update()
+        });
+
+        function update() //writes in <div> with id=output
+        {
+          var val = editor.getSession().getValue();
+          $('#javacode').html(val);
+        }
+
+
+        var langTools = ace.require("ace/ext/language_tools");
+        langTools.addCompleter({
+          getCompletions: function (editor, session, pos, prefix, callback) {
+            var completions = [];
+            if (prefix.length === 0) {
+              completions = [
+                { value: "System.out.println", caption: "System.out.println", meta: "Java function" },
+                { value: "Math.sqrt", caption: "Math.sqrt", meta: "Java function" }
+              ];
+            } else if (prefix === "MathUtils.") {
+              completions = [
+                { value: "square", caption: "square", meta: "Java method" }
+              ];
+            }
+            callback(null, completions);
+          }
+        });
+      </script>
+
+  </div>
+  <textarea id="javacode" name="javacode" style="display:none;">{{ self.code() }}</textarea>
+
+  <p class="center-align">
+    <button class="btn waves-effect waves-light blue lighten-2" type="submit">Submit
+
+      <i class="material-icons right">send</i>
+
+    </button>
+  </p>
+
+  </form>
+
+  </div>
+
+
+  <style>
+    #code-edit {
+
+      margin: auto;
+      width: 100%;
+      padding-top: 20%;
+      padding-bottom: 20%;
+
+
+    }
+
+
+
+    .form-container {
+      background-color: dimgrey;
+      padding: 1%;
+      border-radius: 10px;
+      margin-top: 2%;
+      margin-bottom: 2%;
+    }
+
+    .form-container>form>p {
+      color: white;
+      padding-bottom: 1 %;
+      padding-top: 1%;
+    }
+  </style>
+  <script>
+    //$('input').css('color','white');
+    //$('label.active').css('color','white');
+  </script>
+</body>
+
+</html>

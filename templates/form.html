@@ -1,0 +1,17 @@
+{% extends 'form+edit.html' %}
+
+{% block form_act %}{{name}}{% endblock %}
+{% block name %}     
+{% if  not edit == "true" %}<div class="input-field">
+
+  <input type="text" id="name" name="name" required autocomplete="off">
+
+  <label for="name" class="">Name</label>
+
+</div>{% endif %}
+{% endblock %}
+
+{% block edit %}{{edit}}{% endblock %}
+{% block sdes_val %}{{sdes}}{% endblock %}
+{% block des_val %}{{des}}{% endblock %}
+{% block code %}{{code}}{% endblock %}

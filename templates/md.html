@@ -1,0 +1,40 @@
+
+        <link rel="stylesheet" href="/static/editormd/css/editormd.css" />
+
+
+
+
+
+<div>
+    <div id="test-editor" style="height:50%;">
+    <textarea style="display:none;" name="">### Editor.md
+**Editor.md**: The open source embeddable online markdown editor, based on CodeMirror & jQuery & Marked.
+    </textarea>
+</div>
+</div>
+<script src="/static/editormd/editormd.min.js"></script>
+<script type="text/javascript">
+    {% include 'en.js.html' %}
+    $(function() {
+        var editor = editormd("editor-md", {
+             width  : "",
+             height : "",
+            name:"description",
+            placeholder:"A good Documentation",
+            path   : "/static/editormd/lib/",
+            emoji:true
+        });
+
+    });
+</script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/help-dialog/help-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/code-block-dialog/code-block-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/emoji-dialog/emoji-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/goto-line-dialog/goto-line-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/html-entities-dialog/html-entities-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/image-dialog/image-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/link-dialog/link-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/preformatted-text-dialog/preformatted-text-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/reference-link-dialog/reference-link-dialog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/editor.md@1.5.0/plugins/table-dialog/table-dialog.js"></script>
