@@ -18,4 +18,4 @@ app.register_blueprint(form.app)
 app.register_blueprint(uprofile.app)
 app.register_blueprint(others.app)
 app.secret_key = 'bossBigBoss'
-#app.run(port=8000, debug=True)
+app.run(port=8000, debug=True)

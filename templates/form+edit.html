@@ -68,9 +68,14 @@
               width: "",
               height: "",
               name: "description",
-              placeholder: "A good Documentation",
               path: "/static/editormd/lib/",
-              value: convertSanitizedStringToHtml(`{% block des_val %}{% endblock %}`)
+              onload:function(){$(".editormd-preview-close-btn").toggle()},
+              onfullscreen         : function() {$('#code-edit').toggle(); $('#submit').toggle();},
+              onfullscreenExit     : function() {$('#code-edit').toggle(); $('#submit').toggle();},
+
+
+              value: convertSanitizedStringToHtml(`{% block des_val %}{% endblock %}`),
+              placeholder: ""
 
             });
 
@@ -147,7 +152,7 @@
   <textarea id="javacode" name="javacode" style="display:none;">{{ self.code() }}</textarea>
 
   <p class="center-align">
-    <button class="btn waves-effect waves-light blue lighten-2" type="submit">Submit
+    <button class="btn waves-effect waves-light blue lighten-2" type="submit" id="submit">Submit
 
       <i class="material-icons right">send</i>
 
