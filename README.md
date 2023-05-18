@@ -2,7 +2,7 @@
 
 ## UPDATE ANNOUNCEMENT
 
-## This update ould be live by 2023-05-14 Sunday (EVENING)
+## This update would be live by 2023-05-14 Sunday (EVENING)
 
 1. **cleaned up the code** 
 	1. made index.py super-clean
